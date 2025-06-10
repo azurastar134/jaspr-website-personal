@@ -15,6 +15,7 @@ class Header extends StatelessComponent {
         for (var route in [
           (label: 'Home', path: '/'),
           (label: 'About', path: '/about'),
+          (label: 'Contact', path: '/contact'),
         ])
           div(classes: activePath == route.path ? 'active' : null, [
             Link(to: route.path, child: text(route.label)),
@@ -35,10 +36,10 @@ class Header extends StatelessComponent {
         css('&').styles(
           display: Display.flex,
           height: 3.em,
-          radius: BorderRadius.all(Radius.circular(10.px)), 
+          radius: BorderRadius.all(Radius.circular(8.px)),
           overflow: Overflow.clip,
           justifyContent: JustifyContent.spaceBetween,
-          backgroundColor: primaryColor,
+          backgroundColor: DarkTheme.primaryColor,
         ),
         css('a', [
           css('&').styles(
@@ -46,12 +47,12 @@ class Header extends StatelessComponent {
             height: 100.percent,
             padding: Padding.symmetric(horizontal: 2.em),
             alignItems: AlignItems.center,
-            color: Colors.white,
+            color: DarkTheme.textColor,
             fontWeight: FontWeight.w700,
             textDecoration: const TextDecoration(line: TextDecorationLine.none),
           ),
           css('&:hover').styles(
-            backgroundColor: const Color('#0005'),
+            backgroundColor: DarkTheme.secondaryColor,
           ),
         ]),
         css('div.active', [
@@ -59,10 +60,11 @@ class Header extends StatelessComponent {
           css('&::before').styles(
             content: '',
             display: Display.block,
-            position: Position.absolute(bottom: 0.5.em, left: 20.px, right: 20.px),
+            position:
+                Position.absolute(bottom: 0.5.em, left: 20.px, right: 20.px),
             height: 2.px,
             radius: BorderRadius.circular(1.px),
-            backgroundColor: Colors.white,
+            backgroundColor: DarkTheme.accentColor,
           ),
         ])
       ]),

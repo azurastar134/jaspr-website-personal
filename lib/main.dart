@@ -34,7 +34,8 @@ void main() {
         minHeight: 100.vh,
         padding: Padding.zero,
         margin: Margin.zero,
-        fontFamily: const FontFamily.list([FontFamily('Roboto'), FontFamilies.sansSerif]),
+        fontFamily: const FontFamily.list(
+            [FontFamily('Roboto'), FontFamilies.sansSerif]),
       ),
       css('h1').styles(
         margin: Margin.unset,

@@ -16,7 +16,6 @@ class Home extends StatefulComponent {
 }
 
 class HomeState extends State<Home> {
-
   @override
   void initState() {
     super.initState();
@@ -27,14 +26,13 @@ class HomeState extends State<Home> {
       // run any client-side initialization logic. Instead you can put it here, considering this component is only
       // mounted once at the root of your client-side component tree.
     } else {
-      print("Hello server");
+      print("Hot reloading server.");
     }
   }
 
   @override
   Iterable<Component> build(BuildContext context) sync* {
     yield section([
-      img(src: 'images/logo.svg', width: 80),
       h1([text('Welcome')]),
       p([text('You successfully create a new Jaspr site.')]),
       div(styles: Styles(height: 100.px), []),

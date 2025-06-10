@@ -1,5 +1,7 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
+import 'package:jaspr_site/constants/theme.dart';
+import 'package:jaspr_site/pages/contact.dart';
 
 import 'components/header.dart';
 import 'pages/about.dart';
@@ -22,10 +24,21 @@ class App extends StatelessComponent {
 
     // Renders a <div class="main"> html element with children.
     yield div(classes: 'main', [
+      const ThemeProvider(),
       const Header(),
       Router(routes: [
-        Route(path: '/', title: 'Home', builder: (context, state) => const Home()),
-        Route(path: '/about', title: 'About', builder: (context, state) => const About()),
+        Route(
+            path: '/',
+            title: 'Home',
+            builder: (context, state) => const Home()),
+        Route(
+            path: '/about',
+            title: 'About',
+            builder: (context, state) => const About()),
+        Route(
+            path: '/contact',
+            title: 'Contact',
+            builder: (context, state) => const Contact()),
       ]),
     ]);
   }
@@ -43,6 +56,8 @@ class App extends StatelessComponent {
         height: 100.vh,
         flexDirection: FlexDirection.column,
         flexWrap: FlexWrap.wrap,
+        backgroundColor: DarkTheme.backgroundColor,
+        color: DarkTheme.textColor,
       ),
       css('section').styles(
         display: Display.flex,
