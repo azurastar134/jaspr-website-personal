@@ -24,7 +24,6 @@ class App extends StatelessComponent {
 
     // Renders a <div class="main"> html element with children.
     yield div(classes: 'main', [
-      const ThemeProvider(),
       const Header(),
       Router(routes: [
         Route(
@@ -56,8 +55,6 @@ class App extends StatelessComponent {
         height: 100.vh,
         flexDirection: FlexDirection.column,
         flexWrap: FlexWrap.wrap,
-        backgroundColor: DarkTheme.backgroundColor,
-        color: DarkTheme.textColor,
       ),
       css('section').styles(
         display: Display.flex,

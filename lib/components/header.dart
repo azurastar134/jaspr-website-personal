@@ -1,8 +1,8 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
+import 'package:jaspr_site/components/theme_toggler.dart';
 
-import '../constants/theme.dart';
-
+@client
 class Header extends StatelessComponent {
   const Header({super.key});
 
@@ -20,6 +20,7 @@ class Header extends StatelessComponent {
           div(classes: activePath == route.path ? 'active' : null, [
             Link(to: route.path, child: text(route.label)),
           ]),
+        ThemeToggle(),
       ]),
     ]);
   }
@@ -39,7 +40,6 @@ class Header extends StatelessComponent {
           radius: BorderRadius.all(Radius.circular(8.px)),
           overflow: Overflow.clip,
           justifyContent: JustifyContent.spaceBetween,
-          backgroundColor: DarkTheme.primaryColor,
         ),
         css('a', [
           css('&').styles(
@@ -47,13 +47,10 @@ class Header extends StatelessComponent {
             height: 100.percent,
             padding: Padding.symmetric(horizontal: 2.em),
             alignItems: AlignItems.center,
-            color: DarkTheme.textColor,
             fontWeight: FontWeight.w700,
             textDecoration: const TextDecoration(line: TextDecorationLine.none),
           ),
-          css('&:hover').styles(
-            backgroundColor: DarkTheme.secondaryColor,
-          ),
+          css('&:hover').styles(),
         ]),
         css('div.active', [
           css('&').styles(position: const Position.relative()),
@@ -64,7 +61,6 @@ class Header extends StatelessComponent {
                 Position.absolute(bottom: 0.5.em, left: 20.px, right: 20.px),
             height: 2.px,
             radius: BorderRadius.circular(1.px),
-            backgroundColor: DarkTheme.accentColor,
           ),
         ])
       ]),

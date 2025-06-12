@@ -1,86 +1,98 @@
 import 'package:jaspr/jaspr.dart';
 
-// Light theme colors
-class LightTheme {
-  static const primaryColor = Color('#6B46C1'); // Main purple
-  static const secondaryColor = Color('#9F7AEA'); // Lighter purple
-  static const backgroundColor = Color('#FFFFFF'); // White background
-  static const textColor = Color('#2D3748'); // Dark gray for text
-  static const accentColor = Color('#B794F4'); // Medium purple accent
-  static const errorColor = Color('#E53E3E'); // Red for errors
-  static const successColor = Color('#48BB78'); // Green for success
-  static const warningColor = Color('#ED8936'); // Orange for warnings
+// Colors
 
-  // Additional purple shades
-  static const purpleLight = Color('#E9D8FD'); // Very light purple
-  static const purpleMedium = Color('#805AD5'); // Medium purple
-  static const purpleDark = Color('#553C9A'); // Dark purple
-  static const purpleDeep = Color('#44337A'); // Deep purple
-}
+const primaryDark = Color('#09387e');
+const primaryMid = Color('#0066B4');
+const primaryMidLow = Color.variable('--primaryMidLow');
+const primaryLight = Color('#40C4FF');
 
-// Dark theme colors
-class DarkTheme {
-  static const primaryColor = Color('#9F7AEA'); // Lighter purple for dark mode
-  static const secondaryColor = Color('#B794F4'); // Medium purple
-  static const backgroundColor =
-      Color('#1E1E1E'); // VS Code dark theme background
-  static const textColor = Color('#E4E4E4'); // Light gray for text
-  static const accentColor = Color('#6B46C1'); // Main purple as accent
-  static const errorColor = Color('#FC8181'); // Lighter red for dark mode
-  static const successColor = Color('#68D391'); // Lighter green for dark mode
-  static const warningColor = Color('#F6AD55'); // Lighter orange for dark mode
+const primaryFaded = Color.variable('--primaryFaded');
 
-  // Additional purple shades
-  static const purpleLight = Color('#E9D8FD'); // Very light purple
-  static const purpleMedium = Color('#805AD5'); // Medium purple
-  static const purpleDark = Color('#553C9A'); // Dark purple
-  static const purpleDeep = Color('#44337A'); // Deep purple
-}
+final primaryGradient =
+    'linear-gradient(90deg, ${primaryDark.value}, ${primaryMid.value}, ${primaryLight.value})';
 
-// Theme provider
-class ThemeProvider extends StatefulComponent {
-  const ThemeProvider({super.key});
+final textDim = Color.variable('--textDim');
+final textDark = Color.variable('--textDark');
+final textBlack = Color.variable('--textBlack');
 
-  @override
-  State<ThemeProvider> createState() => ThemeProviderState();
-}
+final shadowColor1 = Color.variable('--shadowColor1');
+final shadowColor2 = Color.variable('--shadowColor2');
+final shadowColor3 = Color.variable('--shadowColor3');
 
-class ThemeProviderState extends State<ThemeProvider> {
-  bool _isDarkMode = true;
+final background = Color.variable('--background');
+final backgroundFaded = Color.variable('--backgroundFaded');
 
-  @override
-  Iterable<Component> build(BuildContext context) sync* {
-    yield div([
-      div(classes: 'theme-toggle', [
-        button(
-          onClick: () {
-            setState(() {
-              _isDarkMode = !_isDarkMode;
-            });
-            print('Theme toggled to: ${_isDarkMode ? 'Dark' : 'Light'} mode');
-          },
-          [text(_isDarkMode ? '🌞 Light Mode' : '🌙 Dark Mode')],
-        ),
-      ]),
-    ]);
-  }
+final borderColor = Color.variable('--borderColor');
+final borderColor2 = Color.variable('--borderColor2');
 
-  @css
-  static final styles = [
-    css('.theme-toggle', [
-      css('&').styles(
-        position: Position.absolute(top: 20.px, right: 20.px),
-      ),
-      css('button').styles(
-        padding: Padding.all(10.px),
-        backgroundColor: DarkTheme.primaryColor,
-        color: Colors.white,
-        radius: BorderRadius.all(Radius.circular(8.px)),
-        cursor: Cursor.pointer,
-      ),
-      css('button:hover').styles(
-        opacity: 0.9,
-      ),
+final surface = Color.variable('--surface');
+final surfaceLow = Color.variable('--surfaceLow');
+final surfaceLowest = Color.variable('--surfaceLowest');
+
+final hoverOverlayColor = Color.variable('--hoverOverlayColor');
+
+final lightTheme = {
+  primaryMidLow: Color('#004377'),
+  primaryFaded: Color('#0066b41e'),
+  textDim: Color('#777'),
+  textDark: Color('#555'),
+  textBlack: Color('#222'),
+  shadowColor1: Color('#0001'),
+  shadowColor2: Color('#0004'),
+  shadowColor3: Color('#0002'),
+  background: Color('#FFF'),
+  backgroundFaded: Color('#FFF9'),
+  borderColor: Color('#EEE'),
+  borderColor2: Color('#CCC'),
+  surface: Color('#F5F5F5'),
+  surfaceLow: Color('#F8F8F8'),
+  surfaceLowest: Color('#FCFCFC'),
+  hoverOverlayColor: Color('#0001'),
+};
+
+final darkTheme = {
+  primaryMidLow: Color('#007ad7'),
+  primaryFaded: Color('#6ad0ff1c'),
+  textDim: Color('#CCC'),
+  textDark: Color('#EEE'),
+  textBlack: Color('#F5F5F5'),
+  shadowColor1: Color('#0001'),
+  shadowColor2: Color('#0004'),
+  shadowColor3: Color('#0002'),
+  background: Color('#0d1117'),
+  backgroundFaded: Color('#0d111799'),
+  borderColor: Color('#1d1f25'),
+  borderColor2: Color('#292c35'),
+  surface: Color('#070c14'),
+  surfaceLow: Color('#161b1f'),
+  surfaceLowest: Color('#11141a'),
+  hoverOverlayColor: Color('#FFF1'),
+};
+@css
+final root = [
+  // Global
+  css('html, body').styles(padding: Padding.zero, margin: Margin.zero),
+  css('html').styles(
+    fontFamily: FontFamily.list([
+      FontFamilies.uiSansSerif,
+      FontFamilies.systemUi,
+      FontFamilies.sansSerif
     ]),
-  ];
-}
+    backgroundColor: background,
+  ),
+
+  // Theme
+  css(':root').styles(raw: {
+    for (final color in lightTheme.keys)
+      color.value.substring(4, color.value.length - 1):
+          lightTheme[color]!.value,
+    '--contentPadding': '4rem',
+    '--sectionPadding': '16rem',
+  }),
+
+  css(':root.dark').styles(raw: {
+    for (final color in darkTheme.keys)
+      color.value.substring(4, color.value.length - 1): darkTheme[color]!.value,
+  }),
+];
