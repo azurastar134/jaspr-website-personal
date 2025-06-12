@@ -1,6 +1,7 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
 import 'package:jaspr_site/components/theme_toggler.dart';
+import 'package:jaspr_site/constants/theme.dart';
 
 @client
 class Header extends StatelessComponent {
@@ -32,6 +33,7 @@ class Header extends StatelessComponent {
         display: Display.flex,
         padding: Padding.all(1.em),
         justifyContent: JustifyContent.center,
+        backgroundColor: background,
       ),
       css('nav', [
         css('&').styles(
@@ -40,6 +42,8 @@ class Header extends StatelessComponent {
           radius: BorderRadius.all(Radius.circular(8.px)),
           overflow: Overflow.clip,
           justifyContent: JustifyContent.spaceBetween,
+          color: textBlack,
+          backgroundColor: surface,
         ),
         css('a', [
           css('&').styles(
@@ -49,8 +53,11 @@ class Header extends StatelessComponent {
             alignItems: AlignItems.center,
             fontWeight: FontWeight.w700,
             textDecoration: const TextDecoration(line: TextDecorationLine.none),
+            color: textBlack,
           ),
-          css('&:hover').styles(),
+          css('&:hover').styles(
+            backgroundColor: hoverOverlayColor,
+          ),
         ]),
         css('div.active', [
           css('&').styles(position: const Position.relative()),
@@ -61,6 +68,7 @@ class Header extends StatelessComponent {
                 Position.absolute(bottom: 0.5.em, left: 20.px, right: 20.px),
             height: 2.px,
             radius: BorderRadius.circular(1.px),
+            backgroundColor: primaryMid,
           ),
         ])
       ]),
