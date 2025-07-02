@@ -1,6 +1,5 @@
 import 'package:jaspr/jaspr.dart';
 import 'package:jaspr_router/jaspr_router.dart';
-import 'package:jaspr_site/constants/theme.dart';
 import 'package:jaspr_site/pages/contact.dart';
 
 import 'components/header.dart';

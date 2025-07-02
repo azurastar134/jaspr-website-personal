@@ -45,6 +45,7 @@ JasprOptions get defaultJasprOptions => JasprOptions(
     ...prefix1.Header.styles,
     ...prefix2.ThemeToggleState.styles,
     ...prefix3.root,
+
     ...prefix4.About.styles,
     ...prefix5.Contact.styles,
     ...prefix7.App.styles,
